@@ -1,0 +1,33 @@
+
+if nodemon key word is not recognized in the terminal:
+npx nodemon yourFile.js
+npx nodemon yourFile.js runs nodemon without installing it globally.
+npx executes a package from node_modules or downloads it temporarily.
+nodemon auto-restarts your app (yourFile.js) when code changes.
+
+
+if nodemon is not recognized when you install it as a global.
+1. Install Nodemon globally (if not installed):
+npm install -g nodemon
+
+2. Add nodemon to PATH:
+Go to Control Panel > System > Advanced system settings > Environment Variables.
+Edit the Path variable and add:
+
+C:\Users\Super Galaxy\npm-global\bin
+
+3. Restart Command Prompt/PowerShell and run:
+
+nodemon -v
+
+
+If you don’t want to install globally, you can use:
+npx nodemon
+Let me know if you need more help!
+
+
+
+
+
+
+

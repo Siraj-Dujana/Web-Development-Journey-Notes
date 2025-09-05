@@ -1,0 +1,14 @@
+To fix the PowerShell script execution error:
+
+Open PowerShell as Administrator:
+
+Right-click the Start button, choose Windows PowerShell (Admin).
+Changopye Execution Policy: Run the following command:
+
+COMMAND:   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+Confirm: Type Y and press Enter when prompted.
+
+Restart PowerShell and try your npm command again.
+

@@ -1,0 +1,12 @@
+1. open edit the system environment
+2. click on environment variable
+3. double click on path
+4. add path of node js
+
+
+to use npm:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+
+2️⃣ Manually delete npm cache (if needed):
+Delete the C:\Users\Super Galaxy\AppData\Local\npm-cache folder manually.

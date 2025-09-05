@@ -1,0 +1,9 @@
+to use npm:
+
+Option 1: Temporarily Allow Scripts (Recommended)
+Run this in VS Code terminal (PowerShell) before running npm commands:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+Option 2: Permanently Allow Scripts
+If you want a permanent fix, run:
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned

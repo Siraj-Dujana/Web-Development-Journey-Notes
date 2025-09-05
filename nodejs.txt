@@ -1,0 +1,152 @@
+Node js
+javascript runtime environment that helps you run javascript code outsite of browser.
+it is used for server side programming.
+It’s commonly used for building backend services, APIs, and real-time applications like chat or gaming servers.
+
+*node.js is not a language, library or framework.
+
+feature
+1. very popular
+2. based on javascript no need to learn another language.
+
+
+Steps to Run:
+Install Node.js from nodejs.org.
+Save the code in a file (e.g., server.js).
+Run node server.js in the terminal.
+Access the server at http://localhost:3000.
+
+
+Node Repl (Read evaluate print loop)
+.help gives us commands.
+
+
+we can do many things with Node Repl but we can't manipulate the dom here.
+
+
+global object
+
+Node files
+
+node fileName.js 
+
+process: object provides info about, and control over the current node js process.
+process.argv: return an array containing the command line arguments passed when the node js procces was launched.
+process.release
+process.cwd()
+
+
+node first.js siraj
+
+let arg=process.argv;
+
+for(let i=2;i<arg.length;i++){
+    console.log(arg[i]);
+}
+
+
+
+module.exports(requiring files)
+is an object which allows us to export methods and properties to another file in the same directory.
+how to use functions and properties of another file
+
+
+require(): a builtin function to include external modules that exist in separate files.
+
+module.exports : a special object, it contains all the things which one file want to send another file.
+
+example
+math.js
+module.exports=123; 
+export.js
+const somevalue=require('./math');
+console.log(somevalue);
+
+
+access function
+access values
+access objects
+
+return empty object if nothing is exported and we still require them it is by default.
+
+it looks like basic but we when we have big project then we make modules
+
+
+module.export(requiring directory)
+
+
+
+NPM(node package Manager) (pre install with node)
+npm is the standard package manager for NODE.js
+1. library of packages (store)
+2. command line tool(install package,version)
+Package: already bultin code which is reused.
+
+
+installing packages
+npm install <package>
+ex: npm install figlet
+
+
+node_modules: The node modules folder contains every installed dependenc for your project
+give example:
+package-lock.json it records the exact version of every installed dependency, including its sub-dependencies and their versions.
+give example:
+
+
+using figlet
+
+package.json
+contains descriptive and functional metadata about a project such as a name, version and depndencies.
+
+usage: if we have package.json file so we don't need node-modules and we can install node-modules using package.json information.
+
+
+npm init: to create package.json for any directory.
+
+
+package give me a joke
+
+
+
+Global vs local installation
+local: npm i package name
+
+
+
+steps :
+1. sudo chown -R $USER /user/local/lib/node_modules(note this commnd can't be used in windows)
+but this one npm config set prefix C:\Users\<YourUsername>\npm-global
+npm config set prefix "C:\Users\Super Galaxy\npm-global"
+
+
+this command is written because we need admin access before installing globally.
+Not writing this command will give us error
+
+2. global: npm -g i package name
+3. link: npm link package name
+
+
+uninstall figlet globally:
+npm uninstall -g figlet
+
+Clear npm cache:
+npm cache clean force
+
+reinstall
+npm install -g figlet
+
+Try linking again:
+npm link figlet
+
+npm install figlet
+
+
+
+require vs import
+import{sum}from "./math.js"
+
+we can't selectively load only the pieces we need with require but with import, we can selectively load only the pieces we need, which can save memeory.
+
+loading is synchronous for require but can be asynchronous for import
+

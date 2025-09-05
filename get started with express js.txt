@@ -1,0 +1,31 @@
+const express = require('express');
+const app = express();
+
+// Define a route
+app.get('/', (req, res) => {
+    res.send('Welcome to the Express.js Tutorial');
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
+
+
+const express = require('express');
+This imports the Express library, allowing you to use it to create your web server.
+
+const app = express();
+This creates an Express application that you can use to define routes, handle requests, and configure your server.
+
+app.get('/', (req, res) => { ... });
+
+The GET route for the root URL (/) sends the message "Welcome to the Express.js Tutorial" as a response when accessed at http://localhost:3000/.
+
+
+
+app.listen(3000, () => { ... });
+
+This tells the app to start the server and listen for incoming requests on port 3000.
+The callback function inside the listen method will run once the server starts, logging "Server is running on http://localhost:3000" to the console.
+In short: This code sets up a basic Express server that responds with a welcome message when you visit the root URL.

@@ -1,0 +1,536 @@
+
+### Library vs Framework 📚
+
+Library:  
+A library is a collection of pre-written code that you can call upon to perform specific tasks.  
+Example: Axios (used for making HTTP requests).
+
+Definition: A library typically helps with small parts of a web application.
+
+Framework:  
+A framework is a pre-built structure for your application, telling you how things should be organized and offering reusable components.  
+Example: Express (a web framework for building apps).
+
+Definition: A framework generally provides the overall structure of your web application.
+
+
+
+### Express.js 🚀
+
+Express:  
+Express is a minimal and flexible Node.js web application framework used to build server-side applications.
+
+Uses of Express:  
+💬 Listens for Incoming Requests: Express listens for requests (like GET, POST, etc.) and processes them accordingly.  
+📡 Parses Requests: It reads and extracts data from incoming requests (like JSON, form data, or query parameters) and converts it into a usable format.  
+🛣️ Matches Responses with Routes/Paths: Express checks the request URL and matches it with the appropriate route to send a response.  
+🚪 Sends Suitable Responses: Express can send a variety of responses like plain text, JSON, HTML, or even files.
+
+
+
+### Getting Started with Express ✨
+
+1️⃣ Import Express:
+
+js
+const express = require('express');
+const app = express();
+
+
+2️⃣ Define a Route:
+
+js
+app.get('/', (req, res) => {
+    res.send('Welcome to the Express.js Tutorial!');
+});
+
+
+3️⃣ Start the Server:
+
+js
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
+
+
+
+
+### Ports and IPs 🌍
+
+🔌 Port: Logical endpoints used for communication between a web server and a client.  
+💻 IP Address: Identifies a specific device (server) on a network.  
+🌐 Why Both? You need an IP to know which machine you're connecting to, and the port tells you which service or application on that machine you're trying to reach.
+
+Example: Ports 3000 or 8080 are commonly used for custom servers.
+
+
+
+### `app.use()` 🛠️
+
+📡 Middleware: `app.use()` executes for every incoming request, whether it's a GET, POST, or anything else.
+
+js
+app.use((req, res, next) => {
+  console.log('A request was made!');
+  next(); // Passes the request to the next middleware or route handler
+});
+
+
+
+
+### Handling Requests and Responses 📝
+
+🌐 Request: Express transforms the raw HTTP request into a request object that can be parsed.  
+📬 Response: You can send various types of responses like JSON, HTML, or plain text. Here's an example of how to send a response:
+
+js
+app.use((req, res) => {
+    console.log('Request received!');
+    res.send('Hello, World!');
+});
+
+
+
+
+### Routing 🛤️
+
+🔍 Routing: It's the process of selecting the correct path for the traffic (request).
+
+js
+app.get('/', (req, res) => {
+    res.send('Welcome to the homepage!');
+});
+
+
+If the path doesn’t exist, you can define a standard 404 response:
+
+js
+app.get('*', (req, res) => {
+    res.send('This page doesn’t exist!');
+});
+
+
+
+
+### Nodemon 🖥️
+
+Nodemon is a tool that automatically restarts your server when code changes.  
+💡 Install Nodemon:
+
+bash
+npm install -g nodemon
+
+
+🛠️ Run the server with Nodemon:
+
+bash
+nodemon express.js
+
+
+If you're facing issues with Nodemon, make sure it's installed globally by running:
+
+bash
+npm list -g nodemon
+
+
+
+
+### Path Parameters and Query Strings 🌍
+
+Path Parameters:  
+🔑 Used to identify a specific resource from the URL.  
+Example: `/user/123` → Fetches user profile with ID 123.
+
+js
+app.get('/user/:id', (req, res) => {
+    const { id } = req.params;
+    res.send(`User ID: ${id}`);
+});
+
+
+Query String:  
+🔍 Used for optional filters or searches.  
+Example: `/search?name=John&age=25` → Searching users based on name and age.
+
+js
+app.get('/search', (req, res) => {
+    const { name, age } = req.query;
+    res.send(`Searching for ${name}, age ${age}`);
+});
+
+
+
+
+### Templating with EJS 🖌️
+
+EJS (Embedded JavaScript Templates):  
+EJS allows you to create dynamic HTML using plain JavaScript.
+
+💻 Install EJS:
+
+bash
+npm install ejs
+
+
+🔧 Use EJS in Express:
+
+js
+app.set('view engine', 'ejs');
+
+
+📄 Render a Template:
+
+js
+app.get('/', (req, res) => {
+    res.render('home.ejs');
+});
+
+
+
+
+### Example of Using EJS with Dynamic Data 🧑‍💻
+
+Let's say you're creating an Instagram-like page for each user:
+
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+</head>
+<body>
+    <h1>hello this page belongs to <%= username %></h1>
+    <button>Follow</button>
+    <button>Message</button>
+</body>
+</html>
+
+
+Route Example:
+
+js
+app.get('/ig/:username', (req, res) => {
+    const { username } = req.params;
+    res.render('insta.ejs', { username });
+});
+
+
+
+
+### Conditional Statements in EJS 🔀
+
+Use `<% %>` to add logic in your templates, like conditionals:
+
+html
+<% if (userLoggedIn) { %>
+    <h1>Welcome back, <%= username %>!</h1>
+<% } else { %>
+    <h1>Please log in.</h1>
+<% } %>
+
+
+
+
+### Includes (Partial Templates) 📄
+
+You can use includes to reuse templates across your app.
+
+html
+<%= include("includes/header.ejs"); %>
+
+
+This helps to avoid code repetition.
+
+
+
+Hope this makes things clearer and adds a bit of fun! Let me know if you need more examples or any further clarification. 😎
+
+
+Get and Post Requests:
+
+GEt: used to get some response
+
+DAta sent in query Strings
+(limited length of url ,string data & visiable in URL)
+
+Post
+used to post something(for create/write/update)
+
+Data sent via request body(any type of data)
+
+Handling post requests:
+> set up Post request route to get some response
+>parse post request data
+
+app.use(express.urlencoded({extended:true}))
+app.use(express.json()); 
+
+req.body
+
+
+
+Rivising OOPs
+Object oriented programming: connect programming with real world.
+const stu1={
+    marks:10,
+    getmarks:function() return this.marks;
+}
+const stu2={
+    marks:10,
+    getmarks:function() return this.marks;
+}
+const stu3={
+    marks:10,
+    getmarks:function() return this.marks;
+}
+INEFFICIENT WAY + MORE MEMORY OCCUPY(each object occupy memory)
+
+SOLUTION: make template(class) through which we will create multiple objects.
+effiecit way + less memory occupy(once time memory is occupied for methods and variables)
+
+to structure our code
+>prototypes
+>new operator
+>constructors
+>classes
+>keywords(extends,super)
+
+
+prototypes:
+every object has bulilt-in properties and methods in javascript which are known as prototype.
+each object inherits  properties and methods from prototyp.
+
+are the mechanisim by which javascript objects inherit features from one another.
+it is like a single template object that all objects inherit methods and properties from without having their own copy.
+arr._proto_(reference): points to actual prototype
+Array.prototype(actual object)
+String.Prototype
+
+
+
+factory functiona : a function that creates objects
+function person(name,age){
+            const person={
+                name:name,
+                age:age,
+                talk:function(){
+                    console.log(`hello my name is ${this.name}`);
+                }
+            }
+
+            return person;
+        }
+
+        INEFFICIENT for memory because it will create copy each time.
+        let p1=person('siraj',12);//copy
+        let p2=person('dujana',18); //copy
+
+
+new operator:(initially blank object is created in the memory with new keyword)
+The new operator lets developers create and instance of a user-defined object type or of one of the built-in object types that has a constructor function.
+constructor-does't return anything and start with capital.
+
+function person(name,age){
+    this.name=name;
+    this.age=age;
+    console.log(this)
+    //window object will be displayed because person is a function which is created in the window object
+}
+
+person.prototyp.talk=function(){
+    console.log("hi my name is"+this.name);
+}
+
+let p1=new person('siraj',25);
+let p2=new person('dujana',25);
+//both object reffer to the same reference
+p1.talk===p2.talk
+
+
+class:(how object should be displayed) classes are a template for creating objects
+the constructor method is a special method of a class for creating and initializing an object instances of that class
+
+class person{
+    constructor(name,age){
+        this.name=name;
+        this.age=age;
+    }
+
+
+    talk(){
+        console.log('hi my name is'+this.name);
+    }
+}
+
+let p1=new person('siraj',25);
+let p2=new person('dujana',25);
+
+inheritance
+is a mechanisim that allows us to create new class on the basis of already exisiting classes.
+
+
+class person{
+    constructor(name,age){
+        this.name=name;
+        this.age=age;
+    }
+
+
+    talk(){
+        console.log('hi my name is'+this.name);
+    }
+}
+
+class student extends person{
+    constructor(name,age,marks){
+        super(name,age);
+        this.marks=marks;
+    }
+
+    greet(){
+        return "hellow"
+    }
+}
+        
+
+        let s1=new student('adam',25,95);
+
+
+
+        JS (OOP)
+ Summary Sheet
+ Qs1. What is Object Oriented Programming (OOP)?
+ Ans. Object-Oriented Programming (OOP) is a programming paradigm in computer
+ science that relies on the concept of classes and objects. It is used to structure a
+ software program into simple, reusable pieces of code blueprints (usually called
+ classes), which are used to create individual instances of objects.
+ Qs2. What are some benefits of using OOP in JavaScript?
+ Ans. Some benefits of using OOP in JavaScript includes:
+ a. Improved code organization (structure of code)
+ b. Reusability of code
+ c. Better maintainability of code
+ d. Closeness to real-world objects
+ Qs3. What is the difference between an object and a class in JavaScript?
+ Ans. Objects in JS is a standalone entity, with properties, methods and a type. It can be
+ created directly from functions or through constructor functions.
+ Class in JS acts as a blueprint for creating objects.
+ Qs4. What is a constructor function in JS?
+ Ans. constructor function is a special function that is used to create & initialize objects
+ in JS. When a new object is created using a constructor function, it is automatically
+ assigned a set of properties and methods that are defined within the function.
+ Qs5. What is a prototype chain in JavaScript?
+ @Violet_Dimension_delta_
+ batch
+ Ans. Every object in JavaScript has a built-in property, which is called its prototype.
+ The prototype is itself an object, so the prototype will have its own prototype, making
+what's called a prototype chain. The chain ends when we reach a prototype that has
+ null for its own prototype.
+ Qs6. What is the difference between a constructor and a class in JavaScript?
+ Ans. A constructor is a function that creates an object, while a class is a blueprint for
+ creating objects. Classes define the framework whereas, constructor actually creates
+ the objects & initializes them.
+ (In JavaScript, classes are syntactic sugar over constructor functions.)
+ Qs7. Why is the “new” keyword used in JavaScript?
+ Ans. The 'new' keyword is used to create an instance of an object. When used with a
+ constructor function, it creates a new object and sets the constructor function's 'this'
+ keyword to point to the new object.
+ Qs8. What is Inheritance in OOP?
+ Ans. Inheritance in OOP is defined as the ability of a class to derive properties and
+ characteristics from another class while having its own properties as well.
+ Qs9. What is the “super” keyword in JS?
+ Ans. The super keyword in JavaScript acts as a reference variable to the parent class.
+ It is mainly used when we want to access a variable, method, or constructor in the
+ base class from the derived class.
+ Qs10. What will be the output for the following code:
+ @Violet_Dimension_delta_
+ batch
+Ans. The output will be “Square area is 16” as the child class (Square) implementation
+ of area() function will override parent class (Box) implementation of the function with
+ the same name.
+ @Violet_Dimension_delta_
+ batch
+
+
+REST API(representational state transfer)
+
+Rest is an architectural style that defines a set of constraints (rules) to be used for creating web services.
+
+Restful apis are those apis which follow the rules of rest.
+will be used for crud operations
+
+developers.twitter.come for apis
+
+Crud operations
+get retrives resources
+post submits new data to the server
+put updates existing data
+patch update existing data partially
+delete remove data
+
+
+we are going to create quora posts app
+
+post> username content
+1. view all
+2. individual post view
+3. edit update posts
+4. delete posts
+
+
+resource: on which we are performing crud operation
+resource > tweets or users
+
+
+Creating REstful apis
+get /posts  to get data for all posts
+post    /posts to add a new post
+get /posts/:id to get one post (using id)
+patch /posts/:id to update specific post
+delete /posts/:id to delete specific post
+
+
+
+crud operation project: quora posts
+
+get /posts
+implement: POST/posts
+create route
+post /posts to add new post
+
+2 routes
+
+> serve the form get /posts/new
+> add the new post post /posts
+
+
+redirect
+res.redirect(url): request to another api
+ status
+
+uuid package:universially unique identifiers
+
+npm i uuid
+const { v4: uuidv4 } = require('uuid');
+uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+
+
+patch
+update route
+patch /posts/:id to update specific post
+
+create form for update
+edit route
+server the edit form get /posts/:id/edit
+
+it is not possible to use patch request in html forms because it has just two methods get and post
+method override: to overide methods like each post request must be overided with get or delete or put
+
+delete operation
+destroy route
+delete /posts/:id to delete specific post
+
+
+
+
